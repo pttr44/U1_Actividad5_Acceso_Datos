@@ -1,4 +1,4 @@
-package com.promehub;
+Xpackage com.promehub;
 
 import static org.junit.Assert.assertTrue;
 
