@@ -1,6 +1,9 @@
 package com.promehub;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 import jakarta.xml.bind.JAXBContext;
@@ -72,6 +75,41 @@ public class App {
             e.printStackTrace();
         }
 
+    }
+
+    public void LeerCSV(Catalogo catalogo){
+        
+        String ruta = "promehub_app/datos/csv/videojuegos.csv";
+        String separador = ",";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))){
+            
+            br.readLine(); //Leemos y saltamos la primera línea
+
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                
+                if (linea.isBlank()) continue;
+
+                String[] campos = linea.split(separador);
+
+                Videojuego v = new Videojuego();
+
+                v.setId(Integer.parseInt(campos[0].trim()));
+                v.setTitulo(campos[1].trim());
+                v.setPlataforma(campos[2].trim());
+                v.setGenero(campos[3].trim());
+                v.setPrecio(Double.parseDouble(campos[4].trim()));
+                v.setStock(Integer.parseInt(campos[5].trim()));
+                v.setCodigoProveedor(Integer.parseInt(campos[6].trim()));
+
+                catalogo.add(v);
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el CSV");
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e){
+            System.err.println("Línea con formato incorrecto");
+        }
     }
 
 }
