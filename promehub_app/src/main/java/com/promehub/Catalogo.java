@@ -12,10 +12,14 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 public class Catalogo {
 
     @XmlElement (name = "videojuego")
-    public List<com.promehub.Videojuego> catalogo;
+    private List<com.promehub.Videojuego> catalogo;
 
     public Catalogo(){
 
+    }
+
+    public void agregarVideojuego(Videojuego videojuego){
+        catalogo.add(videojuego);
     }
 
     public Catalogo(List<Videojuego> catalogo) {
@@ -28,5 +32,11 @@ public class Catalogo {
 
     public void setCatalogo(List<Videojuego> catalogo) {
         this.catalogo = catalogo;
+    }
+
+    public void mostrarCatalogo (){
+        for (Videojuego videojuego : catalogo){
+            System.out.println(videojuego);
+        }
     }
 }
