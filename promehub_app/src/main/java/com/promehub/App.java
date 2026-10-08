@@ -45,7 +45,7 @@ public class App {
                     exportarCatalogoaCSV(catalogo);
                     break;
                 case 6:
-                    
+                    buscarVideojuegoPorId(scanner, catalogo);
                     break;
                 case 0:
                     scanner.close();
@@ -205,6 +205,20 @@ public class App {
             System.out.println("Archivo CSV creado con éxito.");
         } catch (IOException e) {
             System.err.println("Error crítico al escribir el archivo: " + e.getMessage());
+        }
+    }
+
+    public static void buscarVideojuegoPorId(Scanner scanner, Catalogo catalogo) {
+        System.out.print("Introduce el ID del videojuego a buscar: ");
+        int id = scanner.nextInt();
+
+        Videojuego juegoEncontrado = catalogo.buscarPorId(id);
+
+        if (juegoEncontrado != null) {
+            System.out.println("\nVideojuego encontrado:");
+            System.out.println(juegoEncontrado);
+        } else {
+            System.out.println("\nNo se encontró ningún videojuego con el ID: " + id);
         }
     }
 

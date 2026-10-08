@@ -39,4 +39,16 @@ public class Catalogo {
             System.out.println(videojuego);
         }
     }
+
+    public Videojuego buscarPorId(int id) {
+        if (this.catalogo == null) {
+            return null;
+        }
+        for (Videojuego videojuego : this.catalogo) {
+            if (videojuego.getId() == id) {
+                return videojuego;
+            }
+        }
+        return null;
+    }
 }
