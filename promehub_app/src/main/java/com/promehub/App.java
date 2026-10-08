@@ -14,13 +14,16 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        Catalogo catalogo = new Catalogo();
+        
         int opcion = 1;
         while (opcion != 0) {
             menu();
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-
+                    leerCSV(catalogo);
                     break;
                 case 2:
 
@@ -29,7 +32,7 @@ public class App {
 
                     break;
                 case 4:
-
+                    exportarCatalogoaXML(catalogo);
                     break;
                 case 5:
 
@@ -77,7 +80,7 @@ public class App {
 
     }
 
-    public void LeerCSV(Catalogo catalogo){
+    public static void leerCSV(Catalogo catalogo){
         
         String ruta = "promehub_app/datos/csv/videojuegos.csv";
         String separador = ",";
@@ -93,17 +96,17 @@ public class App {
 
                 String[] campos = linea.split(separador);
 
-                Videojuego v = new Videojuego();
+                Videojuego videojuego = new Videojuego();
 
-                v.setId(Integer.parseInt(campos[0].trim()));
-                v.setTitulo(campos[1].trim());
-                v.setPlataforma(campos[2].trim());
-                v.setGenero(campos[3].trim());
-                v.setPrecio(Double.parseDouble(campos[4].trim()));
-                v.setStock(Integer.parseInt(campos[5].trim()));
-                v.setCodigoProveedor(Integer.parseInt(campos[6].trim()));
+                videojuego.setId(Integer.parseInt(campos[0].trim()));
+                videojuego.setTitulo(campos[1].trim());
+                videojuego.setPlataforma(campos[2].trim());
+                videojuego.setGenero(campos[3].trim());
+                videojuego.setPrecio(Double.parseDouble(campos[4].trim()));
+                videojuego.setStock(Integer.parseInt(campos[5].trim()));
+                videojuego.setCodigoProveedor(Integer.parseInt(campos[6].trim()));
 
-                catalogo.add(v);
+                catalogo.catalogo.add(videojuego);
             }
         } catch (IOException e) {
             System.err.println("Error al leer el CSV");

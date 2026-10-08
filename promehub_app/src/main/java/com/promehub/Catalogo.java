@@ -12,7 +12,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 public class Catalogo {
 
     @XmlElement (name = "videojuego")
-    private List<com.promehub.Videojuego> catalogo;
+    public List<com.promehub.Videojuego> catalogo;
 
     public Catalogo(){
 
