@@ -4,7 +4,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -16,7 +20,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         Catalogo catalogo = new Catalogo();
-        
+
         int opcion = 1;
         while (opcion != 0) {
             menu();
@@ -80,19 +84,21 @@ public class App {
 
     }
 
-    public static void leerCSV(Catalogo catalogo){
-        
+    public static void leerCSV(Catalogo catalogo) {
+
         String ruta = "promehub_app/datos/csv/videojuegos.csv";
         String separador = ",";
 
-        try (BufferedReader br = new BufferedReader(new FileReader(ruta))){
-            
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+
             br.readLine(); //Leemos y saltamos la primera línea
 
             String linea;
             while ((linea = br.readLine()) != null) {
-                
-                if (linea.isBlank()) continue;
+
+                if (linea.isBlank()) {
+                    continue;
+                }
 
                 String[] campos = linea.split(separador);
 
@@ -110,8 +116,56 @@ public class App {
             }
         } catch (IOException e) {
             System.err.println("Error al leer el CSV");
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e){
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             System.err.println("Línea con formato incorrecto");
+        }
+    }
+
+    public static void mostrarInformacionFicheros() {
+
+        Path rutaXml = Paths.get("promehub/datos/xml");
+        Path rutaCsv = Paths.get("promehub/datos/csv");
+
+        System.out.println(" - FICHEROS XML:");
+
+        try (Stream<Path> stream = Files.list(rutaXml)) { // Try con recursos, stream es una lista de rutas de todos los ficheros de una ruta
+
+            stream.forEach(fichero -> { // .forEach metodo de stream que recorre todos los ficheros
+                try {
+                    System.out.println("Fichero: " + fichero.getFileName());
+                    System.out.println("Existe: " + Files.exists(fichero));
+                    System.out.println("Tamaño: " + Files.size(fichero) + " bytes");
+                    System.out.println("Ruta: " + fichero.toAbsolutePath());
+                    System.out.println();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(" - FICHEROS CSV:");
+
+        try (Stream<Path> stream = Files.list(rutaCsv)) {
+
+            stream.forEach(fichero -> {
+                try {
+                    System.out.println("Fichero: " + fichero.getFileName());
+                    System.out.println("Existe: " + Files.exists(fichero));
+                    System.out.println("Tamaño: " + Files.size(fichero) + " bytes");
+                    System.out.println("Ruta: " + fichero.toAbsolutePath());
+                    System.out.println();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
