@@ -1,5 +1,6 @@
 package com.promehub;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -7,18 +8,18 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement (name = "catalogo") //elemento raiz en el XML
-@XmlAccessorType (XmlAccessType.FIELD) //JAXB trabaja directamente con los atributos
+@XmlRootElement(name = "catalogo") //elemento raiz en el XML
+@XmlAccessorType(XmlAccessType.FIELD) //JAXB trabaja directamente con los atributos
 public class Catalogo {
 
-    @XmlElement (name = "videojuego")
+    @XmlElement(name = "videojuego")
     private List<com.promehub.Videojuego> catalogo;
 
-    public Catalogo(){
-
+    public Catalogo() {
+        this.catalogo = new ArrayList<>();
     }
 
-    public void agregarVideojuego(Videojuego videojuego){
+    public void agregarVideojuego(Videojuego videojuego) {
         catalogo.add(videojuego);
     }
 
@@ -34,8 +35,8 @@ public class Catalogo {
         this.catalogo = catalogo;
     }
 
-    public void mostrarCatalogo (){
-        for (Videojuego videojuego : catalogo){
+    public void mostrarCatalogo() {
+        for (Videojuego videojuego : catalogo) {
             System.out.println(videojuego);
         }
     }

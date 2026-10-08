@@ -26,13 +26,13 @@ public class Videojuego {
     private String genero;
     private double precio;
     private int stock;
-    private int codigoProveedor;
+    private String codigoProveedor;
 
     public Videojuego() {
         //vacío para el unmarshalling
     }
 
-    public Videojuego(int id, String titulo, String plataforma, String genero, double precio, int stock, int codigoProveedor) {
+    public Videojuego(int id, String titulo, String plataforma, String genero, double precio, int stock, String codigoProveedor) {
         this.id = id;
         this.titulo = titulo;
         this.plataforma = plataforma;
@@ -90,11 +90,11 @@ public class Videojuego {
         this.stock = stock;
     }
 
-    public int getCodigoProveedor() {
+    public String getCodigoProveedor() {
         return codigoProveedor;
     }
 
-    public void setCodigoProveedor(int codigoProveedor) {
+    public void setCodigoProveedor(String codigoProveedor) {
         this.codigoProveedor = codigoProveedor;
     }
 

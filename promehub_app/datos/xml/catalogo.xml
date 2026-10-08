@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogo>
+    <videojuego>
+        <id>1</id>
+        <titulo>Cyberpunk 2077</titulo>
+        <plataforma>PC</plataforma>
+        <genero>RPG</genero>
+        <precio>39.99</precio>
+        <stock>12</stock>
+        <codigoProveedor>PROV-001</codigoProveedor>
+    </videojuego>
+    <videojuego>
+        <id>2</id>
+        <titulo>EA Sports FC 26</titulo>
+        <plataforma>PS5</plataforma>
+        <genero>Deportes</genero>
+        <precio>69.99</precio>
+        <stock>8</stock>
+        <codigoProveedor>PROV-003</codigoProveedor>
+    </videojuego>
+    <videojuego>
+        <id>3</id>
+        <titulo>Minecraft</titulo>
+        <plataforma>PC</plataforma>
+        <genero>Sandbox</genero>
+        <precio>29.99</precio>
+        <stock>20</stock>
+        <codigoProveedor>PROV-002</codigoProveedor>
+    </videojuego>
+    <videojuego>
+        <id>4</id>
+        <titulo>Mario Kart World</titulo>
+        <plataforma>Switch 2</plataforma>
+        <genero>Carreras</genero>
+        <precio>79.99</precio>
+        <stock>6</stock>
+        <codigoProveedor>PROV-004</codigoProveedor>
+    </videojuego>
+    <videojuego>
+        <id>5</id>
+        <titulo>GTA V</titulo>
+        <plataforma>PS5</plataforma>
+        <genero>Accion</genero>
+        <precio>29.99</precio>
+        <stock>15</stock>
+        <codigoProveedor>PROV-001</codigoProveedor>
+    </videojuego>
+</catalogo>
