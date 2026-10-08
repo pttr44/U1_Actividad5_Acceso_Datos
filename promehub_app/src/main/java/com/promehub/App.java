@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 
 public class App {
 
@@ -112,7 +113,7 @@ public class App {
                 videojuego.setStock(Integer.parseInt(campos[5].trim()));
                 videojuego.setCodigoProveedor(Integer.parseInt(campos[6].trim()));
 
-                catalogo.catalogo.add(videojuego);
+                catalogo.agregarVideojuego(videojuego);
             }
         } catch (IOException e) {
             System.err.println("Error al leer el CSV");
@@ -165,6 +166,26 @@ public class App {
             });
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deserializarXML(){
+
+        try {
+            
+            //Creamos el contexto para utilizar java
+            JAXBContext contexto = JAXBContext.newInstance(Catalogo.class);
+
+            //Creamos el objeto para la transformacion de xml -> java
+            Unmarshaller unmarshaller = contexto.createUnmarshaller();
+
+            //Lee el XML y genera el objeto tipo Catalogo
+            Catalogo catalogo = (Catalogo) unmarshaller.unmarshal(new File("catalogo.xml"));
+
+            System.out.println(catalogo);
+
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
