@@ -1,8 +1,10 @@
 package com.promehub;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,7 +42,7 @@ public class App {
                     exportarCatalogoaXML(catalogo);
                     break;
                 case 5:
-
+                    exportarCatalogoaCSV(catalogo);
                     break;
                 case 6:
 
@@ -59,7 +61,7 @@ public class App {
         System.out.println("2) Mostrar catalogo");
         System.out.println("3) Exportar catalogo a XML");
         System.out.println("4) Cargar catalogo desde XML");
-        System.out.println("5) Exportar catalogo desde CSV");
+        System.out.println("5) Exportar catalogo a CSV");
         System.out.println("6) Buscar videojuego");
         System.out.println("7) Informacion de ficheros");
         System.out.println("0) Salir");
@@ -187,6 +189,22 @@ public class App {
 
         } catch (JAXBException e) {
             e.printStackTrace();
+        }
+    }
+
+    // Exportar catálogo a CSV (JAVA >>> CSV)
+    public static void exportarCatalogoaCSV(Catalogo catalogo) {
+        // Uso un try con recursos que crea para la tarea de exportar a CSV un archivo llamado datos.csv el cual es un FileWriter
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("datos.csv"))) {
+            // Para cada videojuego del catalogo creo un string con todos sus datos separados por comas y añado la lina al archivo
+            for (Videojuego game : catalogo.getCatalogo()) {
+                String datos = game.getId() + "," + game.getTitulo() + "," + game.getGenero() + "," + game.getPlataforma() + "," + game.getPrecio() + "," + game.getStock() + "," + game.getCodigoProveedor();
+                bw.write(datos);
+                bw.newLine();
+            }
+            System.out.println("Archivo CSV creado con éxito.");
+        } catch (IOException e) {
+            System.err.println("Error crítico al escribir el archivo: " + e.getMessage());
         }
     }
 
